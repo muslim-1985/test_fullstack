@@ -19,9 +19,9 @@ class BookController extends AppController
             'publishing_houses_id' => 'required',
             'name' => 'required',
             'publishing' => 'required',
-            'image' => 'required'
+            'image' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
-       // предварительная работа с изображениями ведется в Http/Provides/AppServiceProvider
+       // предварительная работа с изображениями ведется в App/Provides/AppServiceProvider
         try {
             //декодируем данные которые прилетели к нам с фронта
             $authors_id = json_decode($request->input('authors'));
@@ -32,9 +32,8 @@ class BookController extends AppController
             }
             return response()->json(['message' => 'Book create success']);
         } catch (\Exception $e) {
-            return response()->json(['message'=>$e->getMessage()], 500);
+            return response()->json(['message'=>$e->getMessage()]);
         }
-        //return response()->json($authors_id);
     }
     public function getBooks ()
     {
@@ -45,7 +44,9 @@ class BookController extends AppController
             return response()->json(['message'=>$e->getMessage()], 500);
         }
     }
-
+    /*
+     * предварительное удаление изображения из папки на сервере в App/Provides/AppServiceProvider
+     */
     public function destroyBook ($id)
     {
         $book = Book::findOrFail($id);

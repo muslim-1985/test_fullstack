@@ -16,9 +16,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Book::creating(function($model) {
             if (isset($model->image)) {
-                $imageName = $model->image->store('images');
+                $imageName = $model->image->store('images', 'public');
                 $model->image = $imageName;
             }
+        });
+        Book::deleting(function($model) {
+            unlink(public_path("storage/$model->image"));
         });
     }
 
