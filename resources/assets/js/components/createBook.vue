@@ -83,7 +83,7 @@
                 return store.dispatch('createBook', this.model).then(() => {
                     this.reset();
                     $("#create_book_model").modal("hide");
-                    store.dispatch('getBooks');
+                    window.location.reload();
                 })
             },
             onFile(event) {
@@ -94,6 +94,9 @@
                 this.model.house = '';
                 this.model.name = '';
                 this.model.date = '';
+            },
+            getBook () {
+                return  store.dispatch('getBooks');
             }
         },
         computed: {

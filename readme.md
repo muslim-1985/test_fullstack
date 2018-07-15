@@ -13,3 +13,5 @@
     <li>npm install</li>
     <li>npm run dev</li>
 </ul>
+
+<p>SQL dump at the root of the project, filename: dump.sql </p>

@@ -18,7 +18,7 @@ class BookController extends AppController
             'authors' => 'required',
             'publishing_houses_id' => 'required',
             'name' => 'required',
-            'publishing' => 'required',
+            'publishing' => 'required|date',
             'image' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
        // предварительная работа с изображениями ведется в App/Provides/AppServiceProvider

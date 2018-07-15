@@ -9,7 +9,6 @@ export default {
         })
             .then(response => {
                 alert(response.data.message);
-                // // this.readTasks();
             })
             .catch(error => {
                 this.errors = [];
@@ -33,8 +32,6 @@ export default {
         })
             .then(response => {
                 alert(response.data.message);
-                //this.reset();
-                //$("#create_publishing_house_model").modal("hide");
             })
             .catch(error => {
                 this.errors = [];
@@ -54,7 +51,6 @@ export default {
     },
     createBook ({commit}, {selectedId, house, name, date, image}) {
         const objFormData = {selectedId, house, name, date, image};
-        //console.log(objFormData)
         //создаем нативный js обЪект для отправки данных multipart form data
         let obj = new FormData();
         obj.append('authors', JSON.stringify(objFormData.selectedId));
@@ -65,7 +61,6 @@ export default {
         //отправляем данные на сервер
         axios.post('/bookStore', obj)
             .then((res) => {
-                //alert('Good created successful');
                 console.log(res.data.message)
             })
             .catch((err) => {
@@ -77,7 +72,7 @@ export default {
         axios.get('/getBooks')
             .then(response => {
                 commit('clearBooks');
-                console.log(response.data.message);
+                console.log(response.data);
                 for(let i = 0; i < response.data.books.length; i++) {
                     commit('setBooks', response.data.books[i]);
                 }
@@ -89,10 +84,10 @@ export default {
     deleteBook ({commit}, {id}) {
         axios.delete('/destroyBook/' + id)
             .then((res) => {
-                console.log(res)
+                console.log(res.data.message)
             })
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
             })
     }
 };

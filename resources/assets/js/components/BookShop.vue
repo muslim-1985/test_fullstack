@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <table class="table table-bordered table-striped table-responsive">
+                        <table class="table table-bordered" style="margin-top: 40px;">
                             <tbody>
                             <tr>
                                <th>id</th>
@@ -37,7 +37,7 @@
                                     <span v-for="(key, value) in data">{{ key.name }}</span>
                                 </td>
                                 <td>{{ data.publishing }}</td>
-                                <td><img :src="'http://localhost/'+data.image"/></td>
+                                <td><img :src="'/storage/'+data.image" style="width: 90px"/></td>
                                 <td>
                                     <button  @click="deleteAuthor({id: data.id}, index)" class="btn btn-danger btn-xs">Delete</button>
                                 </td>
@@ -123,6 +123,6 @@
     }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css">
+<style lang="scss" src="vue-multiselect/dist/vue-multiselect.min.css">
 
 </style>
